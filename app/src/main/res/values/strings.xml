@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RedmineApp</string>
+    <string name="e_mail">e-mail or api key</string>
+    <string name="e_mail_hint">e-mail</string>
+    <string name="password_hibt">password</string>
+    <string name="domain_hint">domain</string>
+    <string name="login_with_api_key">Login with api key</string>
+    <string name="basic_login">Basic login</string>
+    <string name="login_button">Login</string>
 </resources>
