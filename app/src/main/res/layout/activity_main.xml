@@ -8,9 +8,9 @@
 
     <EditText
         android:id="@+id/text_input_domain_Login"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="344dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="104dp"
         android:hint="@string/domain_hint"
         android:text="https://red.assist.ro"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -19,26 +19,25 @@
 
     <EditText
         android:id="@+id/text_input_e_mail_Login"
-        android:layout_width="200dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="344dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/e_mail_hint"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_domain_Login" />
 
     <EditText
         android:id="@+id/text_input_password_Login"
-        android:layout_width="200dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="252dp"
+        android:layout_width="343dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/password_hibt"
         android:inputType="textPassword"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_e_mail_Login" />
 
     <TextView
         android:id="@+id/login_btn_withApiKey"
@@ -57,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_btn_withCredentials"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
         android:id="@+id/login_btn_withCredentials"
@@ -65,12 +64,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="32dp"
         android:onClick="loginBtnUser"
         android:text="@string/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_input_password_Login" />
 
 </android.support.constraint.ConstraintLayout>

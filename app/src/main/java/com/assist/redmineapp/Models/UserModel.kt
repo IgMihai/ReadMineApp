@@ -3,7 +3,12 @@ package com.assist.redmineapp.Models
 /**
  * Created by assist on 02.04.2018.
  */
-data class UserGeneralData(var id: Int = 0,
+
+data class UserCall(
+        var user: UserGeneralData? = null
+)
+
+open class UserGeneralData(var id: Int = 0,
                            var login: String,
                            var firstname: String = "",
                            var lastname: String = "",
@@ -12,3 +17,4 @@ data class UserGeneralData(var id: Int = 0,
                            val api_key: String = "")
 
 open class UserLoginData(open var username: String = "", open var password: String = "", open var domain: String = "")
+

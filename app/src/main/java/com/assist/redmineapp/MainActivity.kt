@@ -1,12 +1,14 @@
 package com.assist.redmineapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import com.assist.redmineapp.Models.UserGeneralData
-import com.assist.redmineapp.Models.UserLoginData
 import com.assist.redmineapp.Models.User
+import com.assist.redmineapp.Models.UserCall
+import com.assist.redmineapp.Models.UserLoginData
+import com.assist.redmineapp.Utils.getAuthToken
 import com.assist.redmineapp.data.RestClient
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,16 +22,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        autoLogin()
+    }
+
+    private fun autoLogin() {
+        val apiKey = Utils.readSharedPreferencesApiKey(this@MainActivity)
+        val domain = Utils.readSharedPreferencesDomain(this@MainActivity)
+        if (apiKey != resources.getString(R.string.defaultApiKey)) {
+            User.instance.userLoginModel.domain = domain
+            loginCall(apiKey, "")
+        }
     }
 
     /**
      * authentication using credentials
      */
     fun loginBtnUser(v: View) {
-        var currentUser = UserLoginData(text_input_e_mail_Login.text.toString(), text_input_password_Login.text.toString(), text_input_domain_Login.text.toString())
+        val currentUser = UserLoginData(text_input_e_mail_Login.text.toString(), text_input_password_Login.text.toString(), text_input_domain_Login.text.toString())
 
         User.instance.userLoginModel = currentUser
-        loginCall()
+        loginCall(text_input_e_mail_Login.text.toString(), text_input_password_Login.text.toString())
+
     }
 
     /**
@@ -53,15 +66,18 @@ class MainActivity : AppCompatActivity() {
     /**]
      * login api call
      */
-    private fun loginCall() {
-        RestClient.instance.api.loginUser(getAuthToken(text_input_e_mail_Login.text.toString(), text_input_password_Login.text.toString()))
+    private fun loginCall(username: String, password: String) {
+        RestClient.instance.api.loginUser(getAuthToken(username, password))
                 .subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(object : SingleObserver<UserGeneralData> {
+                ?.subscribe(object : SingleObserver<UserCall> {
                     override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onSuccess(t: UserGeneralData) {
-                        Log.i("Main", t.api_key + " " + t.firstname + " " + t.login)
+                    override fun onSuccess(t: UserCall) {
+                        Utils.writeSharedPreferencesDomainAndApiKey(this@MainActivity, text_input_domain_Login.text.toString(), t.user!!.api_key)
+                        Log.i("Main", t.user!!.api_key + " " + t.user!!.firstname + " " + t.user!!.login)
+                        startActivity(Intent(this@MainActivity, ProjectsActivities::class.java))
+                        finish()
                     }
 
                     override fun onError(e: Throwable) {
@@ -70,16 +86,5 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
-    /**
-     * gets the token for basic authentication
-     */
-    private fun getAuthToken(username: String, password: String): String {
-        var data = ByteArray(0)
-        try {
-            data = ("$username:$password").toByteArray(Charsets.UTF_8)
-        } catch (e: UnsupportedEncodingException) {
-            e.printStackTrace()
-        }
-        return "Basic " + android.util.Base64.encodeToString(data, android.util.Base64.NO_WRAP)
-    }
+
 }
