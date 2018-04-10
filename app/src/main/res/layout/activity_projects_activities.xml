@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProjectsActivities">
+    tools:context=".GeneralActivities.ProjectsActivities">
 
     <ListView
-        android:id="@+id/project_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="439dp"
+        android:id="@+id/projects_activity_listView"
+        android:layout_width="399dp"
+        android:layout_height="533dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
@@ -21,7 +21,7 @@
     </ListView>
 
     <Button
-        android:id="@+id/project_button_logout"
+        android:id="@+id/projects_activity_button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -33,6 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/projects_activity_listView" />
 
 </android.support.constraint.ConstraintLayout>

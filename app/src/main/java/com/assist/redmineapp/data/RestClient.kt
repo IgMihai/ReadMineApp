@@ -1,6 +1,5 @@
 package com.assist.redmineapp.data
 
-import com.assist.redmineapp.Models.User
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -3,9 +3,6 @@ package com.assist.redmineapp.Models
 /**
  * Created by beatrice on 02.04.2018.
  */
-data class ProjectModel(
-        var projects: ProjectsData? = null
-)
 
 data class ProjectsData(
 

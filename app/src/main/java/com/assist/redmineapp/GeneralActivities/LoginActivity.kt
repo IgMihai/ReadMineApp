@@ -1,33 +1,34 @@
-package com.assist.redmineapp
+package com.assist.redmineapp.GeneralActivities
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import com.assist.redmineapp.Models.User
+import com.assist.redmineapp.data.User
 import com.assist.redmineapp.Models.UserCall
 import com.assist.redmineapp.Models.UserLoginData
+import com.assist.redmineapp.R
+import com.assist.redmineapp.Utils
 import com.assist.redmineapp.Utils.getAuthToken
 import com.assist.redmineapp.data.RestClient
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
-import java.io.UnsupportedEncodingException
+import kotlinx.android.synthetic.main.activity_login.*
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     var basicLogin: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
         autoLogin()
     }
 
     private fun autoLogin() {
-        val apiKey = Utils.readSharedPreferencesApiKey(this@MainActivity)
-        val domain = Utils.readSharedPreferencesDomain(this@MainActivity)
+        val apiKey = Utils.readSharedPreferencesApiKey(this@LoginActivity)
+        val domain = Utils.readSharedPreferencesDomain(this@LoginActivity)
         if (apiKey != resources.getString(R.string.defaultApiKey)) {
             User.instance.userLoginModel.domain = domain
             loginCall(apiKey, "")
@@ -74,9 +75,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onSuccess(t: UserCall) {
-                        Utils.writeSharedPreferencesDomainAndApiKey(this@MainActivity, text_input_domain_Login.text.toString(), t.user!!.api_key)
+                        Utils.writeSharedPreferencesDomainAndApiKey(this@LoginActivity, text_input_domain_Login.text.toString(), t.user!!.api_key)
                         Log.i("Main", t.user!!.api_key + " " + t.user!!.firstname + " " + t.user!!.login)
-                        startActivity(Intent(this@MainActivity, ProjectsActivities::class.java))
+                        startActivity(Intent(this@LoginActivity, ProjectsActivities::class.java))
                         finish()
                     }
 
