@@ -6,11 +6,28 @@
     android:layout_height="match_parent"
     tools:context="com.assist.redmineapp.Login.LoginActivity">
 
+
+    <TextView
+        android:id="@+id/text_input_e_mail_loginError"
+        android:layout_width="309dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:layout_marginTop="88dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/text_input_domain_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/text_input_domain_Login"
         android:layout_width="344dp"
         android:layout_height="49dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="120dp"
         android:hint="@string/domain_hint"
         android:text="red.assist.ro"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -71,5 +88,6 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_input_password_Login" />
+
 
 </android.support.constraint.ConstraintLayout>

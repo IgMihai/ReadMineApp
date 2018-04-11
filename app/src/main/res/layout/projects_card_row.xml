@@ -6,7 +6,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
-    card_view:cardCornerRadius="15dp">
+    card_view:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,8 +19,15 @@
             android:id="@+id/project_card_row_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/card_row_itemColor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/project_card_row_parentProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:textSize="18sp" />
 
     </LinearLayout>

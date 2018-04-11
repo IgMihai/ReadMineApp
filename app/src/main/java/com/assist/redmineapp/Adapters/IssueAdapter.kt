@@ -20,8 +20,8 @@ class IssueAdapter(private var context: Context, private var issues: List<Issue>
         view.issues_card_row_issueID.setOnClickListener { onClickListener.onIssueClick(issues[position]) }
         view.issues_card_row_issueID.text = issues[position].id.toString()
         view.issues_card_row_issueSubject.text = issues[position].subject
-        view.issues_card_row_issueStatus.text = issues[position].status!!.name
-        view.issues_card_row_issueAssignedTo.text = issues[position].assigned_to!!.name
+        view.issues_card_row_issueStatus.text = issues[position].status?.name
+        view.issues_card_row_issueAssignedTo.text = issues[position].assigned_to?.name
         return view
     }
 

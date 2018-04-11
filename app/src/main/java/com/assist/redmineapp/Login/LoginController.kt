@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import com.assist.redmineapp.GeneralActivities.ProjectsActivities
 import com.assist.redmineapp.Login.Models.UserCall
+import com.assist.redmineapp.R
 import com.assist.redmineapp.Utils
 import com.assist.redmineapp.data.RestClient
 import com.assist.redmineapp.data.User
@@ -13,7 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class LoginController(val context: Context) {
+class LoginController(val context: Context, val controllerCallback: ControllerCallback) {
 
     /**
      * Auto-login functionality if user credentials are stocked in SharePreferences
@@ -22,12 +23,13 @@ class LoginController(val context: Context) {
         val apiKey = Utils.readSharedPreferencesApiKey(context)
         val domain = Utils.readSharedPreferencesDomain(context)
 
-        if (apiKey != "None") {
+        if (apiKey != context.resources.getString(R.string.defaultApiKey)) {
             User.instance.userLoginModel.domain = domain
             loginCall(domain, apiKey, "")
         } else {
             val intent = Intent(context, LoginActivity::class.java)
             context.startActivity(intent)
+            controllerCallback.userLoginError()
         }
     }
 
@@ -49,11 +51,18 @@ class LoginController(val context: Context) {
                         Utils.writeSharedPreferencesDomainAndApiKey(context, domain, t.user!!.api_key)
                         Log.i("Main", t.user!!.api_key + " " + t.user!!.firstname + " " + t.user!!.login)
                         context.startActivity(Intent(context, ProjectsActivities::class.java))
+                        controllerCallback.userLoggedSuccessfully()
                     }
 
                     override fun onError(e: Throwable) {
                         Log.i("Main", e.message)
+                        controllerCallback.userLoginError(e.message!!)
                     }
                 })
+    }
+
+    interface ControllerCallback {
+        fun userLoggedSuccessfully() {}
+        fun userLoginError(errorMessage: String = "") {}
     }
 }

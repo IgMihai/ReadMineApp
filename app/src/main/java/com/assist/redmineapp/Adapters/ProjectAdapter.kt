@@ -19,6 +19,8 @@ class ProjectAdapter(private var context: Context, private var projects: List<Pr
         }
         view.project_card_row_title.setOnClickListener{onClickListener.onProjectClick(projects[position])}
         view.project_card_row_title.text = projects[position].name
+        view.project_card_row_parentProject.text = projects[position].parent?.name
+
         return view
     }
 

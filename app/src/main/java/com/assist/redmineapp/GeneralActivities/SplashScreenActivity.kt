@@ -7,12 +7,12 @@ import com.assist.redmineapp.Login.LoginController
 import com.assist.redmineapp.R
 
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity(), LoginController.ControllerCallback {
     private var mDelayHandler: Handler? = null
     private val SPLASH_DELAY: Long = 3000 //3 seconds
-    private val loginController: LoginController by lazy { LoginController(this@SplashScreenActivity) }
+    private val loginController: LoginController by lazy { LoginController(this@SplashScreenActivity, this) }
 
-    internal val mRunnable: Runnable = Runnable {
+    private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
             loginController.autoLogin()
         }
@@ -30,6 +30,13 @@ class SplashScreenActivity : AppCompatActivity() {
 
     }
 
+    override fun userLoggedSuccessfully() {
+        finish()
+    }
+
+    override fun userLoginError(errorMessage: String) {
+        finish()
+    }
 
     public override fun onDestroy() {
 

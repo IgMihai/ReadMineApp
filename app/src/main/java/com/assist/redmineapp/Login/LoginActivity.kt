@@ -8,10 +8,10 @@ import com.assist.redmineapp.R
 import com.assist.redmineapp.data.User
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginController.ControllerCallback {
 
     var basicLogin: Boolean = true
-    private val loginController: LoginController by lazy { LoginController(this@LoginActivity) }
+    private val loginController: LoginController by lazy { LoginController(this@LoginActivity, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         User.instance.userLoginModel = currentUser
         loginController.loginCall(text_input_domain_Login.text.toString(), text_input_e_mail_Login.text.toString(), text_input_password_Login.text.toString())
+
     }
 
     /**
@@ -44,6 +45,17 @@ class LoginActivity : AppCompatActivity() {
             text_input_password_Login.visibility = View.GONE
             login_btn_withApiKey.text = getString(R.string.basic_login)
             basicLogin = false
+        }
+    }
+
+    override fun userLoggedSuccessfully() {
+        finish()
+    }
+
+    override fun userLoginError(errorMessage: String) {
+        if (!errorMessage.isEmpty()) {
+            text_input_e_mail_loginError.visibility = View.VISIBLE
+            text_input_e_mail_loginError.text = resources.getString(R.string.login_error_message)
         }
     }
 }

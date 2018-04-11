@@ -1,11 +1,9 @@
 package com.assist.redmineapp
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.preference.PreferenceManager
-import android.support.annotation.LayoutRes
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import java.io.UnsupportedEncodingException
 
 object Utils {
@@ -37,6 +35,7 @@ object Utils {
         editor.putString(context.resources.getString(R.string.changeApiKey), apiKey)
         editor.apply()
     }
+
     /**
      * gets the token for basic authentication
      */
@@ -50,4 +49,15 @@ object Utils {
         return "Basic " + android.util.Base64.encodeToString(data, android.util.Base64.NO_WRAP)
     }
 
+    fun <T> Activity.openActivityClosingParent(source: Context, destination: Class<T>) {
+        val intent = Intent(source, destination)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
+    fun <T> Activity.openActivityClosingStack(destination: Class<T>) {
+        val intent = Intent(this, destination)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
 }

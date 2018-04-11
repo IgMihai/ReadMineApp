@@ -17,7 +17,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_issue_activity.*
 
 class ActivityIssueActivity : AppCompatActivity() {
+
     lateinit var adapter: IssueActivityAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_issue_activity)
