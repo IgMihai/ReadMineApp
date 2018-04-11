@@ -11,4 +11,5 @@
     <string name="changeDomain">ChangeDomain</string>
     <string name="changeApiKey">ChangeApiKey</string>
     <string name="defaultApiKey">None</string>
+    <string name="splash_screen">Redmine</string>
 </resources>

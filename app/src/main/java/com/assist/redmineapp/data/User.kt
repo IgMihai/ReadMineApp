@@ -1,6 +1,6 @@
 package com.assist.redmineapp.data
 
-import com.assist.redmineapp.Models.UserLoginData
+import com.assist.redmineapp.Login.Models.UserLoginData
 
 /**
  * Created by assist on 30.03.2018.

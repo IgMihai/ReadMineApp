@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.assist.redmineapp.GeneralActivities.LoginActivity">
+    tools:context="com.assist.redmineapp.Login.LoginActivity">
 
     <EditText
         android:id="@+id/text_input_domain_Login"
@@ -12,7 +12,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="104dp"
         android:hint="@string/domain_hint"
-        android:text="https://red.assist.ro"
+        android:text="red.assist.ro"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

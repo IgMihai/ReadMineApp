@@ -1,9 +1,9 @@
 package com.assist.redmineapp.data
 
+import com.assist.redmineapp.Login.Models.UserCall
 import com.assist.redmineapp.Models.IssueActivity
 import com.assist.redmineapp.Models.IssueData
 import com.assist.redmineapp.Models.ProjectsData
-import com.assist.redmineapp.Models.UserCall
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Header

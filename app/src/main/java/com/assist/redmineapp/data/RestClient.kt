@@ -20,6 +20,7 @@ class RestClient {
     }
 
     val api: API
+    var baseUrl: String = "https://" + User.instance.getDomainName()
 
     init {
         val clientBuilder = OkHttpClient.Builder()
@@ -31,7 +32,7 @@ class RestClient {
             retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(User.instance.getDomainName())
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(clientBuilder.build())
                     .build()

@@ -1,4 +1,4 @@
-package com.assist.redmineapp.Models
+package com.assist.redmineapp.Login.Models
 
 /**
  * Created by assist on 02.04.2018.

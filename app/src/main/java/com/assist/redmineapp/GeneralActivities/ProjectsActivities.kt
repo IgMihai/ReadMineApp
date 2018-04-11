@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.assist.redmineapp.Adapters.ProjectAdapter
+import com.assist.redmineapp.Login.LoginActivity
 import com.assist.redmineapp.Models.Project
 import com.assist.redmineapp.Models.ProjectsData
 import com.assist.redmineapp.R
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_projects_activities.*
 const val TEXT = "projectID"
 
 class ProjectsActivities : AppCompatActivity() {
-
 
     lateinit var adapter: ProjectAdapter
 
@@ -66,6 +66,7 @@ class ProjectsActivities : AppCompatActivity() {
 
     fun logout(v: View) {
         Utils.deleteSharePreferences(this@ProjectsActivities)
+        startActivity(Intent(this@ProjectsActivities, LoginActivity::class.java))
         finish()
     }
 }
