@@ -8,8 +8,7 @@ import com.assist.redmineapp.Adapters.IssueActivityAdapter
 import com.assist.redmineapp.Models.IssueActivity
 import com.assist.redmineapp.Models.Journal
 import com.assist.redmineapp.R
-import com.assist.redmineapp.Utils
-import com.assist.redmineapp.data.RestClient
+import com.assist.redmineapp.data.RestClientAssist
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -28,28 +27,30 @@ class ActivityIssueActivity : AppCompatActivity() {
 
     private fun getIssueActivity() {
         val issueID = intent.getStringExtra(IssueID)
-        RestClient.instance.api.getIssueActivity(Utils.getAuthToken(Utils.readSharedPreferencesApiKey(this), ""), issueID.toInt())
+        RestClientAssist.instance.api_assist.getIssueActivity(388)
                 .subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(object : SingleObserver<IssueActivity> {
+                ?.subscribe(object : SingleObserver<MutableList<IssueActivity>> {
                     override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onSuccess(issueActivity: IssueActivity) {
-                        Log.d("Issues Activity Adapter", issueActivity.issue!!.journals!!.size.toString())
-                        populateList(issueActivity)
+                    override fun onSuccess(issueActivity: MutableList<IssueActivity>) {
+                        for (item in 0 until issueActivity.size) {
+                            Log.d("Issues Activity Adapter", issueActivity[item].issue.toString())
+                            populateList(issueActivity[item])
+                        }
 
                     }
 
                     override fun onError(e: Throwable) {
-                        Log.i("Main", e.message)
+                        Log.i("Issues Activity ", e.message)
                     }
                 })
     }
 
     private fun populateList(issueActivity: IssueActivity) {
-        adapter = IssueActivityAdapter(this@ActivityIssueActivity, issueActivity.issue!!.journals!!, object : IssueActivityAdapter.onIssueActivityListAction {
+        adapter = IssueActivityAdapter(this@ActivityIssueActivity, issueActivity.issue.journals!!, object : IssueActivityAdapter.onIssueActivityListAction {
             override fun onIssueActivityClick(journal: Journal) {
-                Toast.makeText(baseContext, journal.user!!.name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, journal.user.name, Toast.LENGTH_SHORT).show()
             }
         })
         issueActivity_ListView.adapter = adapter

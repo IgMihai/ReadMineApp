@@ -29,7 +29,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="120dp"
         android:hint="@string/domain_hint"
-        android:text="red.assist.ro"
+        android:text="https://red.assist.ro"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

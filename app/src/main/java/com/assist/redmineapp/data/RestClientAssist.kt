@@ -10,17 +10,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Created by assist on 30.03.2018.
  */
-class RestClient {
+class RestClientAssist {
     private var retrofit: Retrofit? = null
 
 
     companion object {
-        public val instance: RestClient by lazy { RestClient() }
+        public val instance: RestClientAssist by lazy { RestClientAssist() }
 
     }
 
-    val api: API
-    var baseUrl: String = User.instance.getDomainName()
+    val api_assist: API
+    var baseUrl: String = "http://192.168.100.98:8000"
 
     init {
         val clientBuilder = OkHttpClient.Builder()
@@ -36,7 +36,7 @@ class RestClient {
                     .client(clientBuilder.build())
                     .build()
         }
-        api = retrofit!!.create(API::class.java)
+        api_assist = retrofit!!.create(API::class.java)
     }
 
 }

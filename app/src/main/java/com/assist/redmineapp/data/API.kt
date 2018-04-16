@@ -33,9 +33,9 @@ interface API {
     ): Single<IssueData>
 
 
-    @GET("/issues/{issueId}.json?include=journals")
+    @GET("/projects/activity/{projectId}?from=2018-04-10&page=1")
     fun getIssueActivity(
-            @Header("authorization") authkey: String, @Path("issueId") issueID: Int
-    ): Single<IssueActivity>
+            @Path("projectId") projectID: Int
+    ): Single<MutableList<IssueActivity>>
 }
 

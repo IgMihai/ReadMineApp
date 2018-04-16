@@ -16,8 +16,18 @@
         android:padding="7dp">
 
         <TextView
+            android:id="@+id/activity_issue_card_row_createdOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:textStyle="bold"
+            android:textColor="@color/cardview_dark_background"
+            android:padding="5dp"
+            android:textSize="22sp" />
+
+        <TextView
             android:id="@+id/activity_issue_card_row_userName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:textColor="@color/card_row_itemColor"
@@ -25,16 +35,7 @@
 
         <TextView
             android:id="@+id/activity_issue_card_row_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:padding="5dp"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:id="@+id/activity_issue_card_row_createdOn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:padding="5dp"

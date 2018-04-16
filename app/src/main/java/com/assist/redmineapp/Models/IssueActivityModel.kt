@@ -1,20 +1,15 @@
 package com.assist.redmineapp.Models
 
 data class IssueActivity(
-        var issue: Issue? = null
+        var issue: Issue = Issue()
 )
 
 data class Journal(
         var id: Int = 0,
-        var user: User? = null,
+        var user: BaseIdNameModel = BaseIdNameModel(),
         var notes: String = "",
         var created_on: String = "",
-        var details: List<Detail>? = null
-)
-
-data class User(
-        var id: Int = 0,
-        var name: String = ""
+        var details: MutableList<Detail>? = mutableListOf()
 )
 
 data class Detail(

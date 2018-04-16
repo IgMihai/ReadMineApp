@@ -18,7 +18,7 @@ class IssueActivityAdapter(private var context: Context, private var journal: Li
             view = parent.inflate(R.layout.issue_activity_card_row)
         }
         view.activity_issue_card_row_userName.setOnClickListener { onClickListener.onIssueActivityClick(journal[position]) }
-        view.activity_issue_card_row_userName.text = journal[position].user!!.name
+        view.activity_issue_card_row_userName.text = journal[position].user.name
         view.activity_issue_card_row_details.text = journal[position].details.toString() // return a list of details
         view.activity_issue_card_row_createdOn.text = journal[position].created_on
         return view
